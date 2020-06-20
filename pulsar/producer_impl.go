@@ -39,6 +39,7 @@ type producer struct {
 	numPartitions uint32
 	messageRouter func(*ProducerMessage, TopicMetadata) int
 	ticker        *time.Ticker
+	done          chan struct{}
 
 	log *log.Entry
 }
@@ -67,6 +68,7 @@ func newProducer(client *client, options *ProducerOptions) (*producer, error) {
 		options: options,
 		topic:   options.Topic,
 		client:  client,
+		done:    make(chan struct{}),
 		log:     log.WithField("topic", options.Topic),
 	}
 
@@ -97,9 +99,14 @@ func newProducer(client *client, options *ProducerOptions) (*producer, error) {
 	p.ticker = time.NewTicker(partitionsAutoDiscoveryInterval)
 
 	go func() {
-		for range p.ticker.C {
-			p.log.Debug("Auto discovering new partitions")
-			p.internalCreatePartitionsProducers()
+		for {
+			select {
+			case <-p.ticker.C:
+				p.log.Debug("Auto discovering new partitions")
+				p.internalCreatePartitionsProducers()
+			case <-p.done:
+				return
+			}
 		}
 	}()
 
@@ -254,6 +261,7 @@ func (p *producer) Flush() error {
 func (p *producer) Close() {
 	p.RLock()
 	defer p.RUnlock()
+	close(p.done)
 	if p.ticker != nil {
 		p.ticker.Stop()
 	}
