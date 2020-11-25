@@ -29,9 +29,9 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 
-	"github.com/apache/pulsar-client-go/pulsar/internal"
-	pb "github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto"
-	"github.com/apache/pulsar-client-go/pulsar/log"
+	"github.com/oqton/pulsar-client-go/pulsar/internal"
+	pb "github.com/oqton/pulsar-client-go/pulsar/internal/pulsar_proto"
+	"github.com/oqton/pulsar-client-go/pulsar/log"
 )
 
 var (

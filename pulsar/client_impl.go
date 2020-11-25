@@ -27,10 +27,10 @@ import (
 
 	"github.com/sirupsen/logrus"
 
-	"github.com/apache/pulsar-client-go/pulsar/internal"
-	"github.com/apache/pulsar-client-go/pulsar/internal/auth"
-	pb "github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto"
-	"github.com/apache/pulsar-client-go/pulsar/log"
+	"github.com/oqton/pulsar-client-go/pulsar/internal"
+	"github.com/oqton/pulsar-client-go/pulsar/internal/auth"
+	pb "github.com/oqton/pulsar-client-go/pulsar/internal/pulsar_proto"
+	"github.com/oqton/pulsar-client-go/pulsar/log"
 )
 
 const (

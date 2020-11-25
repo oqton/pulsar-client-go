@@ -27,8 +27,8 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 
-	"github.com/apache/pulsar-client-go/pulsar/internal"
-	"github.com/apache/pulsar-client-go/pulsar/log"
+	"github.com/oqton/pulsar-client-go/pulsar/internal"
+	"github.com/oqton/pulsar-client-go/pulsar/log"
 )
 
 const (

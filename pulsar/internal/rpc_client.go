@@ -27,10 +27,10 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 	"github.com/prometheus/client_golang/prometheus/promauto"
 
-	"github.com/apache/pulsar-client-go/pulsar/log"
+	"github.com/oqton/pulsar-client-go/pulsar/log"
 
-	pb "github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto"
 	"github.com/gogo/protobuf/proto"
+	pb "github.com/oqton/pulsar-client-go/pulsar/internal/pulsar_proto"
 )
 
 var (

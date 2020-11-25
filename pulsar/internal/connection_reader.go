@@ -21,8 +21,8 @@ import (
 	"bufio"
 	"io"
 
-	pb "github.com/apache/pulsar-client-go/pulsar/internal/pulsar_proto"
 	"github.com/gogo/protobuf/proto"
+	pb "github.com/oqton/pulsar-client-go/pulsar/internal/pulsar_proto"
 	"github.com/pkg/errors"
 )
 

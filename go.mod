@@ -1,4 +1,4 @@
-module github.com/apache/pulsar-client-go
+module github.com/oqton/pulsar-client-go
 
 go 1.13
 
@@ -25,4 +25,4 @@ require (
 	github.com/yahoo/athenz v1.8.55
 )
 
-replace github.com/apache/pulsar-client-go/oauth2 => ./oauth2
+//replace github.com/apache/pulsar-client-go/oauth2 => ./oauth2

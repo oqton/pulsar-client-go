@@ -22,8 +22,8 @@ import (
 	"errors"
 	"time"
 
-	"github.com/apache/pulsar-client-go/pulsar/internal"
-	"github.com/apache/pulsar-client-go/pulsar/log"
+	"github.com/oqton/pulsar-client-go/pulsar/internal"
+	"github.com/oqton/pulsar-client-go/pulsar/log"
 )
 
 type dlqRouter struct {
