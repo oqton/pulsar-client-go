@@ -91,7 +91,7 @@ func newConsumer(client *client, options ConsumerOptions) (Consumer, error) {
 		return nil, newError(SubscriptionNotFound, "subscription name is required for consumer")
 	}
 
-	if options.ReceiverQueueSize <= 0 {
+	if options.ReceiverQueueSize < 0 {
 		options.ReceiverQueueSize = defaultReceiverQueueSize
 	}
 
@@ -272,6 +272,10 @@ func (c *consumer) internalTopicSubscribeToPartitions() error {
 			Info("Changed number of partitions in topic")
 	}
 
+	if c.options.ReceiverQueueSize == 0 && newNumPartitions > 1 {
+		return errors.New("zero-queue consumers can't be used with partitioned topics")
+	}
+
 	c.consumers = make([]*partitionConsumer, newNumPartitions)
 
 	// Copy over the existing consumer instances
@@ -391,6 +395,9 @@ func (c *consumer) Unsubscribe() error {
 }
 
 func (c *consumer) Receive(ctx context.Context) (message Message, err error) {
+	if c.options.ReceiverQueueSize == 0 {
+		c.consumers[0].nudgePermits()
+	}
 	for {
 		select {
 		case <-c.closeCh:
